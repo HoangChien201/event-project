@@ -45,15 +45,21 @@ const FormLogin = ({ setModal, setStatus, setIsLoading }: { setModal: (value: bo
     const isValidPassword = trimmedPassword.length > 0;
 
     if (!isValidEmail || !isValidPassword) {
-
+ 
+      
       setValid({ email: isValidEmail, password: isValidPassword });
-    } else {
+    
+    } 
+
       setValid({ email: true, password: true });
+      console.log(valid);
+      
       try {
         const result = await login(email, password);
         console.log(result);
-        
         if (result) {
+          
+          
           setTimeout(() => {
             setUser(result);
 
@@ -63,12 +69,10 @@ const FormLogin = ({ setModal, setStatus, setIsLoading }: { setModal: (value: bo
           setIsLoading(true)
           setModal(true);
           setStatus(true);
-
           setTimeout(() => {
 
             setModal(false);
           }, 1000);
-
         } else {
           setModal(true);
           setStatus(false);
@@ -80,7 +84,7 @@ const FormLogin = ({ setModal, setStatus, setIsLoading }: { setModal: (value: bo
       } catch (error) {
         console.log("Login error", error);
       }
-    }
+    
   };
   return (
     <View>
@@ -95,7 +99,7 @@ const FormLogin = ({ setModal, setStatus, setIsLoading }: { setModal: (value: bo
 
       </View>
       <View>
-        <ButtonLogin textLogin chilren='Login' textColor='#fff' onPress={submit} />
+<ButtonLogin textLogin chilren='Login' textColor='#fff' onPress={submit} />
       </View>
     </View>
   )
